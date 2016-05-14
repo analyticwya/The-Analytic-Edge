@@ -1,0 +1,32 @@
+In binary varibles, use mean() to calculate propoation 
+
+Problem 1.2
+neiVote <- gerber$neighbors[gerber$voting==1]
+!! variblename[condition] means choose observation from varible while meet the condition inside
+sum(gerber$self==1 and gerber$voting ==1) equals sum(gerber$self[gerber$voting ==1]) equals sum(gerber$voting[gerber$self==1])
+
+
+tapply(gerber$voting, gerber$civicduty, mean)
+!! what is exactly tapply mean?
+?? how the mean in the tapply be calculate?
+tapply(gerber$self,gerber$voting,sum)/nrow(gerber$self==1) equals sum(gerber$self[gerber$voting==1])/sum(gerber$self==1)
+?? why can't use length() or nrow() to get the length of (gerber$self ==1)
+
+Problem 1.3 
+
+Logistic regression Steps
+#1 predict model 
+predictTrain = predict(QualityLog, type="response")
+#2 Confusion Matrix
+table(qualityTrain$PoorCare, predictTrain > 0.5)
+#3 ROC & AUC
+#You can compute the test set AUC by running the following two commands in R:
+library（ROCR）
+ROCRpredTest = prediction(predictTest, qualityTest$PoorCare)
+auc = as.numeric(performance(ROCRpredTest, "auc")@y.values)
+
+Problem 2.1
+!! load library(rpart.plot) and use prp() to plot trees
+Problem 2.2
+?? what does parameter "cp" mean??
+CARTmodel2 = rpart(voting ~ civicduty + hawthorne + self + neighbors, data=gerber, cp=0.0)
